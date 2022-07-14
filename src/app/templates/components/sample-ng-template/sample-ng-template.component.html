@@ -1,0 +1,27 @@
+<h3>ngTemplate Sample</h3>
+
+<ng-template #nopeople>  
+  There is no people to show
+</ng-template>
+
+<ng-container *ngIf="people.length>0 else nopeople">
+  <div *ngFor="let person of people">
+    {{ person.name}}
+  </div>
+</ng-container> 
+
+<ng-container *ngTemplateOutlet="nopeople"></ng-container>
+
+<ng-template #numberPeopleTemplate let-peopleCounter="numberOfPeople"> 
+  <div>hay {{peopleCounter}} personas</div>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="numberPeopleTemplate;context:ctx"></ng-container>
+
+<hr/>
+
+<app-people-list [customNoPeopleTpl]="customNoPeople"></app-people-list>
+
+<ng-template #customNoPeople>
+  <div> no hay personas a mostrar</div>
+</ng-template>
